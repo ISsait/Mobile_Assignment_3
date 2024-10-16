@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import {
     View,
     Text,
-} from "react-native";
+} from 'react-native';
 
 
 
@@ -14,6 +14,6 @@ function Main() : React.JSX.Element {
         </View>
     );
 }
-    
+
 
 export default Main;

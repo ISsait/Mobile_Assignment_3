@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import {
     View,
     Text,
     Image,
     Pressable,
     StyleSheet,
-} from "react-native";
+} from 'react-native';
 
 
 type outputPropType = {
@@ -24,15 +24,15 @@ function Output(props : outputPropType) : React.JSX.Element {
         <View style={style.container}>
             <View style={style.outputView}>
                 <Text style={[style.outputTxt, txtColor]}>
-                    {result === "" ? placeholder : result}
+                    {result === '' ? placeholder : result}
                 </Text>
-                <Pressable 
+                <Pressable
                 style={style.iconView}
                 onPress={() => handleCopy(result)}
                 >
-                    <Image 
-                    style={style.icon} 
-                    source={require("../../assets/icons/copy.png")} 
+                    <Image
+                    style={style.icon}
+                    source={require('../../assets/icons/copy.png')}
                     />
                 </Pressable>
             </View>
@@ -73,15 +73,14 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#B7B7B7',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     icon: {
         width: 40,
         height: 40,
-        resizeMode: "cover",
-        
-    }
+        resizeMode: 'cover',
+    },
 });
 
 export default Output;

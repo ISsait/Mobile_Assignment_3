@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 import {
     Pressable,
     Text,
     StyleSheet,
-} from "react-native";
+} from 'react-native';
 
 const btnColors = [
-    '#4F75FF',  // blue background color
-    '#A04747'   // red background color
+    '#4F75FF', // blue background color
+    '#A04747', // red background color
 ];
 
 export enum btnType {
@@ -28,9 +28,9 @@ function Btn(props : btnPropType) : React.JSX.Element {
     const title = props.title;
     const onPress = props.onPress;
     return (
-        <Pressable 
-        onPress={onPress} 
-        style={[style.btnView, {backgroundColor: btnColors[type-1]}]}>
+        <Pressable
+        onPress={onPress}
+        style={[style.btnView, {backgroundColor: btnColors[type - 1]}]}>
             <Text style={style.btnTxt}>{title}</Text>
         </Pressable>
     );
@@ -54,7 +54,7 @@ const style = StyleSheet.create({
         fontWeight: '600',
         color: '#FFF',
         textAlign: 'center',
-    }
+    },
 });
 
 export default Btn;
