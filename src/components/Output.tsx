@@ -20,6 +20,7 @@ function Output(props : outputPropType) : React.JSX.Element {
     const handleCopy = props.handleCopy;
 
     const txtColor = {color : result === '' ? '#B7B7B7' : '#3C3D37'};
+    console.log('Result: ', result);
     return (
         <View style={style.container}>
             <View style={style.outputView}>

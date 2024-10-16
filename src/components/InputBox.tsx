@@ -1,20 +1,32 @@
 import React from 'react';
-import { 
+import {
     View,
     TextInput,
     StyleSheet,
 } from 'react-native';
 
-export default function InputBox() : React.JSX.Element {
+type inputBoxPropType = {
+    value : string,
+    onChange : (text : string) => void,
+}
+
+export default function InputBox(props : inputBoxPropType) : React.JSX.Element {
+    // const textColor = {color : parseInt(props.value, 10) < 8 || parseInt(props.value, 10) > 16 ? '#3C3D37' : 'red'};
+    // if (parseInt(props.value, 10) < 8 || parseInt(props.value, 10) > 16) {
+    //     showErrorSnackbar('Password length should be between 8 and 16');
+    // }
+
     return (
         <View style={styles.container}>
             <View style={styles.inputView}>
                 <TextInput
                 style={styles.inputTxt}
-                keyboardType='numeric'
-                placeholder='Password Length (8 - 16)'
+                // keyboardType='numeric'
+                placeholder="Password Length (8 - 16)"
                 placeholderTextColor={'#B7B7B7'}
                 numberOfLines={1}
+                value={props.value}
+                onChangeText={props.onChange}
                 />
             </View>
         </View>
@@ -46,6 +58,6 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 25,
         fontWeight: '600',
-        color: '#3C3D37',
+        // color: '#3C3D37',
     },
 });
