@@ -1,3 +1,16 @@
 {
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["dom", "es2017"],
+    "jsx": "react-native", // Specific to React Native
+    "module": "Node16",
+    "moduleResolution": "node16",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "strict": true
+  },
+  "exclude": ["node_modules"],
   "extends": "@react-native/typescript-config/tsconfig.json"
 }
