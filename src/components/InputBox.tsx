@@ -11,10 +11,6 @@ type inputBoxPropType = {
 }
 
 export default function InputBox(props : inputBoxPropType) : React.JSX.Element {
-    // const textColor = {color : parseInt(props.value, 10) < 8 || parseInt(props.value, 10) > 16 ? '#3C3D37' : 'red'};
-    // if (parseInt(props.value, 10) < 8 || parseInt(props.value, 10) > 16) {
-    //     showErrorSnackbar('Password length should be between 8 and 16');
-    // }
 
     return (
         <View style={styles.container}>
@@ -25,6 +21,7 @@ export default function InputBox(props : inputBoxPropType) : React.JSX.Element {
                 placeholder="Password Length (8 - 16)"
                 placeholderTextColor={'#B7B7B7'}
                 numberOfLines={1}
+                maxLength={2}
                 value={props.value}
                 onChangeText={props.onChange}
                 />
@@ -58,6 +55,5 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 25,
         fontWeight: '600',
-        // color: '#3C3D37',
     },
 });

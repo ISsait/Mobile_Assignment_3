@@ -8,10 +8,8 @@ import InputBox from './components/InputBox';
 import Output from './components/Output';
 import CheckBox from './components/Checkbox';
 import Btn from './components/Btn';
-import { showErrorSnackbar } from './utility/utils';
+import { showErrorSnackbar, showInfoSnackBar, showSuccessSnackBar } from './utility/utils';
 import { generatePasswordString } from './utility/passwordGenerator';
-import { PasswordRequirement } from './utility/Consts';
-
 
 
 function Main() : React.JSX.Element {
@@ -56,51 +54,63 @@ function Main() : React.JSX.Element {
     function generatePassword() {
         console.log('Generating Password...');
         if(passwordLength === '') {
-            showErrorSnackbar('Password Length cannot be empty');
+            showErrorSnackbar('Length not entered. Password Length must be a number from 8 to 16. All selections have been cleared.');
             console.log('Password Length cannot be empty');
-            reset();
+            reset(1);
             return;
         }
         if(isNaN(parseInt(passwordLength, 10))) {
-            showErrorSnackbar('Password Length should be a number');
+            showErrorSnackbar('Not a number. Password Length must be a number from 8 to 16. All selections have been cleared.');
             console.log('Password Length should be a number');
-            reset();
+            reset(1);
             return;
         }
         if(parseInt(passwordLength, 10) < 8 ||
             parseInt(passwordLength, 10) > 16) {
-            showErrorSnackbar('Password Length should be between 8 and 16');
+            showErrorSnackbar('Password Length must be a number from 8 to 16. All selections have been cleared.');
             console.log('Password Length should be between 8 and 16');
-            reset();
+            reset(1);
             return;
         }
         if(!upperCase && !lowerCase && !specialChar && !numbers) {
-            showErrorSnackbar('Select at least one option');
+            showErrorSnackbar('Select at least one option. All selections have been cleared.');
             console.log('Select at least one option');
-            reset();
+            reset(1);
             return;
         }
         const length = parseInt(passwordLength, 10);
-        generatedPassword = generatePasswordString({
+        let generatedPasswordVar = generatePasswordString({
             length: length,
             includeUpper: upperCase,
             includeLower: lowerCase,
             includeNumber: numbers,
             includeSymbol: specialChar,
         });
-        console.log('Generated Password: ', generatedPassword);
+        console.log('Generated Password: ', generatedPasswordVar);
+        setGeneratedPassword(generatedPasswordVar);
+        showSuccessSnackBar(`Password Generated Successfully with ${length} characters`);
     }
-    function reset() {
+    function reset(flag : number) {
         console.log('Resetting...');
         setPasswordLength('');
         setUpperCase(false);
         setLowerCase(false);
         setSpecialChar(false);
         setNumbers(false);
+        setGeneratedPassword('');
+        if (flag === 0) {
+            showInfoSnackBar('Reset Successful, all selections cleared');
+        }
     }
 
     function handleCopy(text : string) {
         console.log('Copied: ', text);
+        if(text === '') {
+            showErrorSnackbar('Nothing to Copy');
+            console.log('Nothing to Copy');
+            return;
+        }
+        showSuccessSnackBar('Password Copied to Clipboard');
     }
     return (
         <View style={styles.container}>
@@ -150,7 +160,7 @@ function Main() : React.JSX.Element {
             <Btn
                 type={2}
                 title="Reset"
-                onPress={() => {}}
+                onPress={() => reset(0)}
                 />
         </View>
     );
